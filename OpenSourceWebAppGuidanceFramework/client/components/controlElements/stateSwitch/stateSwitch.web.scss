@@ -1,0 +1,64 @@
+state-switch {
+
+  input {
+    &[type="radio"] {
+      display: none;
+      visibility: hidden;
+  }
+}
+
+  .switch-control {
+    display: inline-flex;
+    height: 35px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-top: 20px;
+  }
+
+  .switch-control > div {
+    border: 1px solid #B0C4DE;
+    box-sizing: border-box;
+  }
+
+  label {
+    @extend %state-text;
+    color: #B0C4DE;
+    outline: none;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 9px;
+  cursor: pointer;
+   }
+
+  .selected {
+    background-color: #B0C4DE;
+
+    label {
+      @extend %state-text;
+      color: #424242;
+    }
+  }
+
+  .switch-control > div:not(:first-child),
+  .switch-control > div:not(:last-child) {
+    margin-left: -1px;
+  }
+
+  .switch-control :first-child {
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+  }
+
+  .switch-control :last-child {
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+  }
+
+  %state-text {
+    font-family: Din, Oxygen, Sans;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 9px;
+  }
+}

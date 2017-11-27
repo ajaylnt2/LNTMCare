@@ -1,0 +1,331 @@
+@import "../../../styles/fonts";
+@import "../../../styles/variable";
+
+.listitem-container{
+    .warning{
+        border-left: 10px solid #d83f4d;
+    }
+    .healthy{
+        border-left: 10px solid #0ac410;
+    }
+    .list-icon
+    {
+      color: #424242;
+    text-align: left;
+    width: 45px;
+    font-size: 28px;
+    margin: 20px 15px !important;
+    }
+    .list-wrap
+    {
+      text-align: left;
+        text-transform: capitalize;
+      line-height: 25px;
+    margin: 20px 0;
+    display: inline-block;
+    }
+    .padding-0-20
+    {
+      padding: 0 20px;
+    }
+    .m-auto
+    {
+      margin: auto;
+    }
+    .margin-10-0
+    {
+          margin: 10px 0px;
+    }
+    .margin-30-0
+    {
+          margin: 30px 0px;
+    }
+    .width90p
+    {
+      width: 90%;
+    }
+    .width50px
+    {
+      width:50px;
+    }
+    .f-right
+    {
+      float: right;
+    }
+    .f-left
+    {
+      float: left;
+    }
+    .item-list-item:hover
+    {
+      background-color: rgba(158,158,158,0.2);
+      cursor: pointer;
+    }
+    .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9,
+    .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+
+          min-height: 0px !important;
+    }
+    .text-right
+    {
+      text-align: right;
+    }
+    .box-shadow
+    {
+          box-shadow: 0px 1px 0px #D8D8D8;
+    }
+    .list-description, .list-subtitle
+    {
+      font-size: 12px;
+
+    }
+    .list-timestamp,.list-duration,.list-role-text
+    {
+      text-align: right;
+    }
+    .list-label, .list-status-text {
+        text-align: right;
+        text-transform: uppercase;
+    }
+    .list-title{
+      font-size: 15px;
+    }
+    .list-item-not-lg .row > .list-wrap {
+
+        line-height: 1.2em;
+        margin-bottom: 0;
+        margin-top: 0;
+        display: block;
+
+    }
+
+    .list-item-not-lg .row > .list-label, .list-item-not-lg .row > .list-timestamp  {
+
+        line-height: 35px;
+
+    }
+
+
+    list-item {
+      min-width: 300px;
+
+      md-list-item {
+
+        .list-icon,
+        .list-text-icon {
+          color: $black;
+          margin-left: -7px;
+          text-align: center;
+          width: 60px;
+        }
+
+        .list-icon {
+          font-size: 32px;
+        }
+
+        .list-text-icon {
+          border: 1px solid $black;
+          border-radius: 50px;
+          font-size: 18px;
+          text-align: center;
+        }
+
+        .list-timestamp {
+          min-width: 100px;
+          white-space: nowrap;
+        }
+      }
+
+      .md-list-item-text {
+        width: 300px;
+      }
+
+      .list-title,
+      .list-description,
+      .list-subtitle,
+      .list-duration,
+      .list-side-text,
+      .list-status-text {
+        text-overflow: clip;
+      }
+
+      md-list-item.md-2-line .md-list-item-text,
+      md-list-item.md-2-line > .md-no-style .md-list-item-text {
+        // clear left margin since it messes up the spacing compared to the small items
+        margin-left: 0;
+      }
+
+      md-list-item.list-item-not-lg {
+
+        icon {
+          margin-top: -20px;
+        }
+
+        .md-2-line .md-list-item-text,
+        .md-no-style .md-list-item-text {
+          margin-bottom: 12px;
+          margin-top: 14px;
+        }
+
+        .list-title,
+        .list-description,
+        .list-subtitle {
+          text-transform: capitalize;
+        }
+
+        .list-title {
+          font-family: $primary-font;
+        }
+
+        .list-description,
+        .list-subtitle {
+          color: $shade;
+          font-family: Arial;
+        }
+
+        .md-list-item-text > h4.list-description {
+          line-height: 1.4em;
+          margin-bottom: 0;
+          margin-top: 0;
+        }
+
+        .md-list-item-text > p.list-subtitle {
+          font-size: 12px;
+          line-height: 1.2em;
+          margin-bottom: 0;
+          margin-top: 0;
+
+        }
+
+        .list-timestamp,
+        .list-side-text,
+        .list-status-text,
+        .list-duration,
+        .list-label {
+          font-family: Arial;
+          font-size: .75em;
+          font-weight: normal;
+          text-align: right;
+        }
+
+        .list-side-text {
+          color: $shade;
+        }
+
+        .list-duration,
+        .list-label {
+          color: $shade;
+        }
+
+        .list-label {
+          text-transform: uppercase;
+          white-space: nowrap;
+        }
+
+        .list-status-text {
+          font-size: .75em;
+          text-transform: uppercase;
+        }
+
+        div.md-list-item-text.addition-info {
+          height: 64px;
+          margin: 0;
+        }
+
+        .md-secondary-container {
+          margin-right: -10px;
+        }
+
+        .action-icon {
+          height: 24px;
+        }
+
+        .more-options {
+          height: 100%;
+        }
+      }
+
+      md-list-item.list-item-lg {
+        height: 60px;
+        min-height: 60px;
+
+        .md-button.md-no-style {
+          height: 60px;
+          min-height: 60px;
+        }
+
+        .list-title,
+        .list-description,
+        .list-subtitle {
+          text-transform: capitalize;
+        }
+
+        .md-list-item-text > h3.list-title {
+          font-family: $primary-font;
+          font-size: 18px;
+          text-transform: capitalize;
+        }
+
+        .md-list-item-text > h4.list-description {
+          color: $black-darker;
+          font-family: Arial;
+          font-size: 16px;
+        }
+
+        .md-list-item-text > p.list-subtitle {
+          color: $shade;
+          font-family: Arial;
+          font-size: 16px;
+        }
+
+        .list-timestamp,
+        .list-side-text,
+        .list-status-text,
+        .list-duration,
+        .list-label {
+          font-family: Arial;
+          font-size: .87em;
+        }
+
+        .list-timestamp,
+        .list-duration,
+        .list-label {
+          color: $black-darker;
+        }
+
+        .list-duration,
+        .list-label {
+          color: $shade;
+        }
+
+        .list-label {
+          white-space: nowrap;
+        }
+
+        .list-timestamp,
+        .list-duration {
+          text-align: right;
+        }
+
+        .list-label,
+        .list-status-text {
+          text-align: right;
+          text-transform: uppercase;
+        }
+
+        .md-secondary-container {
+          margin-left: 16px;
+          margin-right: -5px;
+        }
+
+        .action-icon {
+          height: 24px;
+        }
+
+        .more-options {
+          height: 100%;
+        }
+
+      }
+    }
+}

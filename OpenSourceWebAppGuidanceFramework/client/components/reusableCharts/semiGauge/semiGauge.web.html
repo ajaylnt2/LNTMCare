@@ -1,0 +1,12 @@
+<div id="semi-gauge">
+  {{vm.threshold}}
+<ng-gauge size={{vm.size}} type="{{vm.type}}" thick={{vm.thick}}
+          min="vm.min" max="vm.max" value="vm.value"
+          cap={{vm.cap}} label={{vm.label}} append={{vm.append}} prepend={{vm.prepend}} duration={{vm.duration}} prepend={{vm.prepend}}
+          foreground-color={{vm.foreground}} thresholds="vm.threshold" background-color={{vm.background}} >
+</ng-gauge>
+</div>
+<div class="min-max">
+<small class="float-left min-max-value">{{vm.prepend}}{{vm.min}}{{vm.append}}</small>
+<small class="float-right min-max-value">{{vm.prepend}}{{vm.max}}{{vm.append}}</small>
+</div>

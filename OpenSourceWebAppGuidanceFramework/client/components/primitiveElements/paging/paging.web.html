@@ -1,0 +1,98 @@
+<div class="paging height100p">
+  <!-- Div  for Filter and Search Start-->
+  <div class="panel panel-default paging-head ">
+    <div class="panel-heading-style">
+      <span class="badge-style">Details</span>
+      <form class="search-table" role="search">
+        <div class="input-group add-on" data-toggle="modal" data-target="#myModal">
+          <input type="text" class="form-control" placeholder="Search..." name="srch-term" id="srch-term">
+          <span class="input-group-btn">
+            <button class="btn btn-default search-popup" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+          </span>
+        </div>
+      </form>
+    </div>
+    <!-- Div  for Filter and Search Ends-->
+    <!-- Table Start-->
+    <div class="panel-body-style responsive-overflow">
+      <table class="table table-responsive table-paging table-header table-bordered table-success" ng-init="getColumnName(vm.columns)">
+        <thead>
+          <tr class="table-rowstl">
+            <th ng-repeat="c in vm.columns" scope="col">
+              <a ng-init="count = 0" href="#" class="table-paging " ng-class="c?'sort-by':''" ng-click="count = count+1;
+              orderByMe(c, count,reverseSort);reverseSort = !reverseSort">{{c}}
+            </a>
+            </th>
+          </tr>
+        </thead>
+        <tbody class="hoverTable">
+          <tr class="line65-table" ng-repeat="f in vm.filteredTodos | orderBy:myOrderBy">
+            <td>
+              <i ng-class="(detailsArray[$index].Description=='Running') ? 'fa fa-circle running-image' : 'fa fa-circle not-running-image'"
+                aria-hidden="true"></i>
+              <!-- <i class="fa fa-circle running-image" aria-hidden="true"></i> -->
+              <span>&nbsp;&nbsp;{{f.Name}}</span>
+            </td>
+            <td><img class="location" ng-src="images/LOCATION.png">{{f.Location}}</td>
+            <td><span ng-class="(f.OperatingZone=='Normal') ? 'normal' : ((f.OperatingZone=='Critical') ? 'critical' : '')">{{f.OperatingZone}}</span></td>
+            <td><img ng-class="(f.TotalOperatingHrs==null) ? 'timehidden' : time" ng-src="images/TIME.png">&nbsp;&nbsp;{{f.TotalOperatingHrs}}</td>
+            <td>
+              <button-element on-click="vm.alertDialogProperties.onClick(f.Name)" text="vm.alertDialogProperties.text" type="vm.alertDialogProperties.type"></button-element>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- Table Ends-->
+      <!-- modal popup-->
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="ui-icon-delete" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Select Asset</h4>
+            </div>
+            <div class="modal-body">
+              <div class="carousel slide media-carousel" id="media">
+                <div class="carousel-inner">
+
+                  <div class="item active">
+
+                    <div class="row">
+                      <ul>
+                        <li class=" thumbnail popup-style" ng-repeat="details in detailsArray.slice(vm.start,vm.end)">
+                          <i ng-class="(details.Description=='Running') ? ' running' : 'not-running'"></i>
+
+                          <h5>{{details.Name}}</h5>
+                          <ul class="popup-simple-text">
+                            <li class="country-name"><i ng-class="(details.Location== 'NEWARK') ? 'loc-selected' :no-loc-selected"></i>{{details.Location}}</li>
+
+                            <li class="country-name"><i ng-class="(details.Description=='Running')||(details.Description=='Not Running') ? 'info-selected' :no-info-selected"></i>{{details.Description}}</li>
+
+                            <li class="country-name"><i ng-class="(details.TotalOperatingHrs== '')||(details.TotalOperatingHrs== null)  ? '' :'time-selected'"></i>{{details.TotalOperatingHrs}}</li>
+                          </ul>
+                          <button-element on-click="vm.alertDialogProperties.onClick(details.Name)" text="vm.alertDialogProperties.text" type="vm.alertDialogProperties.type"
+                            class="center-block select-asset-popup" data-toggle="modal" data-target="#myModal"></button-element>
+
+                        </li>
+
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <a class="left carousel-control" href="#media" data-slide="prev" ng-hide="vm.disablePrev" ng-click="vm.prvClick(detailsArray)">‹</a>
+                <a class="right carousel-control" href="#media" data-slide="next" ng-hide="vm.disableNext" ng-click="vm.nextClick(detailsArray)">›</a>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal popup -->
+        <div ng-init="vm.getData(vm.total, vm.page, vm.pagesize, vm.data)"></div>
+        <paging page=vm.page page-size=vm.pagesize total=vm.total ng-click=pageNumber(vm.page) ng-hide="getLength > 0" text-next="Next"
+          text-prev="Previous" text-title-page="Page {page} Hover Over" text-title-next="Next hover" text-title-prev="Prev hover"
+          show-prev-next="true" show-first-last="false">
+        </paging>
+      </div>
+    </div>
+    <!-- Modal popup for Filtering Ends-->
+  </div>

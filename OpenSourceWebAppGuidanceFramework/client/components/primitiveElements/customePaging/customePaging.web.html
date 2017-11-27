@@ -1,0 +1,40 @@
+<div class="custom-pagination height100p" id="second">
+  <!-- Div  for Filter and Search Start-->
+  <div class="panel panel-default col-md-12">
+    <div class="row panel-heading-style">
+      <span class="badge-style col-md-6">Event Log</span>
+      <span class="col-md-6 pull-right">
+        <select  ng-model="selectedName" ng-click="selectName()">
+          <option ng-repeat="x in names">{{x}}</option>
+        </select>
+      </span>
+    </div>
+    <!-- Div  for Filter and Search Ends-->
+    <!-- Table Start-->
+    <div class="panel-body-style responsive-overflow">
+      <table class="table table-paging table-header table-bordered table-success table-responsive" ng-init="getColumnName(vm.columns)">
+        <thead>
+          <tr class="event-log-table">            
+            <th ng-repeat="c in vm.columns" scope="col"><a ng-init="count = 0" href="#" class="table-paging sort-by" ng-click="count = count+1; orderByMe(c, count,reverseSort);reverseSort = !reverseSort">{{c}}</a></th>
+          </tr>
+        </thead>
+        <tbody class="hoverTable">
+          <tr class="line85-table" ng-repeat="f in vm.filteredTodos|filter:filterdTest | filter: filterDataObject | filter:search  |orderBy:myOrderBy">            
+            <td ng-class="f.Description == 'OverLoaded'?'color-red glyphicon glyphicon-warning-sign':''"> <span>{{f.Description}}</span></td>
+            <td>{{f.AssetEventsTimestamp.replace('T', ' ')}}</td>
+            <td>{{f.AssetEventsHistoryTimestamp.replace('T', ' ')}}</td>
+            <td>{{f.Userid}}</td>            
+          </tr>
+        </tbody>
+      </table>
+      <!-- Table Ends-->
+      <div ng-init="vm.getData(vm.total, vm.page, vm.pagesize, vm.data)">{{vm.data}}</div>
+      <paging page=vm.page page-size=vm.pagesize total=vm.total ng-click=pageNumber(vm.page) ng-hide="getLength > 0" text-next="Next"
+        text-prev="Previous" text-title-page="Page {page} Hover Over" text-title-next="Next hover" text-title-prev="Prev hover"
+        show-prev-next="true" show-first-last="false">
+      </paging>
+    </div>
+  </div>
+</div>
+</div>
+

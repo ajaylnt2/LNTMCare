@@ -1,0 +1,132 @@
+<div ng-hide="vm.size === undefined" class="m-auto width90p listitem-container" ng-click="vm.item.onClick()"  ng-class='vm.size == "lg" ? "list-item-lg" : "list-item-not-lg"'>
+<div ng-if="vm.size === 'lg'">
+  <div class="row">
+    <div class="col-md-12 padding-0-20">
+          <div class="row box-shadow item-list-item" ng-class="vm.item.status">
+              <div class="width50px f-left">
+                <span ng-if="vm.item.textIcon && !vm.item.icon" class="list-icon list-text-icon list-wrap">{{ vm.item.textIcon }}</span>
+                <icon ng-if="vm.item.icon" class="list-icon fa list-wrap" ng-class="vm.item.icon"></icon>
+              </div>
+              <div class="col-md-10 min-height-0">
+                <div class="row ">
+                    <div class="col-md-8">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <h3 class="list-title list-wrap" ><b>{{ vm.item.title }}</b></h3>
+                        </div>
+                        <div class="col-md-3">
+                          <h4 class="list-description list-wrap" >{{ vm.item.description }}</h4>
+                        </div>
+                        <div class="col-md-3">
+                            <p class="list-subtitle list-wrap" >{{ vm.item.subtitle }}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="row">
+                        <div class="col-md-6 ">
+                          <span ng-if="vm.item.label && vm.item.status !== 'critical'" class="list-label list-wrap">{{ vm.item.label }}</span>
+                        </div>
+                        <div class="col-md-6">
+                          <span ng-if="(vm.item.timestamp || vm.item.display_timestamp)" class="list-timestamp list-wrap">{{ vm.item.display_timestamp || vm.item.timestamp }}</span>
+                        </div>
+                        <div class="col-md-4">
+                          <span ng-if="vm.item.duration && !vm.item.label" class="list-duration list-wrap">{{ vm.item.duration }}</span>
+                        </div>
+                        <div class="col-md-4">
+                          <span ng-if="vm.item.status && vm.item.status === 'critical'" class="list-status-text list-wrap">{{vm.activeText}}</span>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-1 ">
+                  <!-- <i class="fa fa-ellipsis-v list-wrap f-right" aria-hidden="true"></i> -->
+                  <more-options options="vm.item.moreOptions"></more-options>
+              </div>
+          </div>
+    </div>
+  </div>
+</div>
+
+  <div ng-if="vm.size === 'md'" >
+    <div class="row">
+      <div class="col-md-8 padding-0-20">
+            <div class="row box-shadow item-list-item " ng-class="vm.item.status">
+                <div class="width50px f-left ">
+                  <span ng-if="vm.item.textIcon && !vm.item.icon" class="list-icon list-text-icon list-wrap">{{ vm.item.textIcon }}</span>
+                  <icon ng-if="vm.item.icon" class="list-icon fa list-wrap" ng-class="vm.item.icon"></icon>
+                </div>
+                <div class="col-md-10 min-height-0">
+                  <div class="row ">
+                      <div class="col-md-8">
+                        <div class="row margin-10-0" >
+                            <p class="list-subtitle list-wrap" >{{ vm.item.subtitle }}</p>
+                            <h3 class="list-title list-wrap" ><b>{{ vm.item.title }}</b></h3>
+                            <h4 class="list-description list-wrap" >{{ vm.item.description }}</h4>
+
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="row margin-10-0">
+
+                            <span ng-if="vm.item.label && vm.item.status !== 'critical'" class="list-label list-wrap">{{ vm.item.label }}</span>
+
+                            <span ng-if="(vm.item.timestamp || vm.item.display_timestamp)" class="list-timestamp list-wrap">{{ vm.item.display_timestamp || vm.item.timestamp }}</span>
+
+                            <span ng-if="vm.item.duration && !vm.item.label" class="list-duration list-wrap">{{ vm.item.duration }}</span>
+
+                            <span ng-if="vm.item.status && vm.item.status === 'critical'" class="list-status-text list-wrap">{{vm.activeText}}</span>
+
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-1 ">
+                    <more-options options="vm.item.moreOptions"></more-options>
+                </div>
+            </div>
+      </div>
+    </div>
+  </div>
+  <div ng-if="vm.size === 'sm'">
+    <div class="row">
+      <div class="col-md-6 padding-0-20">
+            <div class="row box-shadow item-list-item" ng-class="vm.item.status">
+                <div class="width50px f-left ">
+                  <span ng-if="vm.item.textIcon && !vm.item.icon" class="list-icon list-text-icon list-wrap">{{ vm.item.textIcon }}</span>
+                  <icon ng-if="vm.item.icon" class="list-icon fa list-wrap" ng-class="vm.item.icon"></icon>
+                </div>
+                <div class="col-md-9 min-height-0">
+                  <div class="row ">
+                      <div class="col-md-8">
+                        <div class="row margin-10-0" >
+                            <p class="list-subtitle list-wrap" >{{ vm.item.subtitle }}</p>
+                            <h3 class="list-title list-wrap" ><b>{{ vm.item.title }}</b></h3>
+                            <h4 class="list-description list-wrap" >{{ vm.item.description }}</h4>
+
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="row margin-10-0">
+
+                            <span ng-if="vm.item.label && vm.item.status !== 'critical'" class="list-label list-wrap">{{ vm.item.label }}</span>
+
+                            <span ng-if="(vm.item.timestamp || vm.item.display_timestamp)" class="list-timestamp list-wrap">{{ vm.item.display_timestamp || vm.item.timestamp }}</span>
+
+                            <span ng-if="vm.item.duration && !vm.item.label" class="list-duration list-wrap">{{ vm.item.duration }}</span>
+
+                            <span ng-if="vm.item.status && vm.item.status === 'critical'" class="list-status-text list-wrap">{{vm.activeText}}</span>
+
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-1 ">
+                      <more-options options="vm.item.moreOptions"></more-options>
+                </div>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>

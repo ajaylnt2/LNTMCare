@@ -1,0 +1,81 @@
+
+.powered-by
+{
+  padding-top:5px;padding-right:20px;font-size:10px;
+}
+@media (max-width:767px)
+{
+  .powered-by
+  {
+    display: block;
+    padding: 10px;
+  }
+}
+
+footer-bar {
+
+    .mcare-footer {
+        background-color: #171717;
+        border-color: transparent;
+        text-align: center !important;
+        color: #fff !important;        
+        position: fixed;
+        z-index: 9999;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: 1rem;
+    }
+    .mcare-logo
+    {
+      width: 123px;
+padding: 0 10px;
+
+    }
+
+    .mcare-footer> .login-footer-text{
+        padding-top:5px;
+        padding-right:20px;
+        font-size:10px;
+    }
+
+    .mcare-footer> .login-footer-img{
+        width:16%;
+        height:26px;
+        padding-right:20px;
+    }
+
+    .login-footer-image{
+        width:16%;
+        height:26px;
+
+    }
+    .lnt-logo {
+      width: 139px;
+    padding: 0 10px;
+    }
+
+    .footer-button{
+        margin-left: -10px;
+        background-color: white;
+        color: #414244;
+        border: 1px solid #171717;
+        border-left: none;
+    }
+
+    .footer-button1{
+        background-color:#ffb81d;
+        border: 1px solid #171717;
+        color: black;
+    }
+
+    .footer-button1:hover{
+        background-color:#ffb81d;
+    }
+
+    .footer-button1:active{
+
+        background-color:#ffb81d;
+    }
+
+}

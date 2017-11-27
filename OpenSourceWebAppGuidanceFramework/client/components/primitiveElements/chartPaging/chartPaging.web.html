@@ -1,0 +1,83 @@
+<div class="chart-paging height100p">
+ <div class="row margin-right-0 ">
+        <div class="col-md-3 padding-right-0">
+          <div class ="form-group date-time-picker">
+            <label>From:</label>
+            <a style="width:100%;" class="dropdown-toggle" id="dropdownStart" role="button" data-toggle="dropdown" data-target="#" href="#">
+              <div class="input-group date" style="width:100%;">
+                <input type="text" class="form-control"  data-ng-model="vm.dateRangeStart">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+              </div>
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <datetimepicker data-ng-model="vm.dateRangeStart" ng-change="vm.listOnChangeDate();vm.changeFormat(vm.dateRangeStart,'dateRangeStart')"
+              data-datetimepicker-config="{ dropdownSelector: '#dropdownStart', renderOn: 'end-date-changed' }"
+                data-on-set-time="startDateOnSetTime()" data-before-render="startDateBeforeRender($dates)"></datetimepicker>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3 padding-right-0 padding-left-0">
+          <div class="form-group date-time-picker">
+            <label>To:</label>
+            <a class="dropdown-toggle" id="dropdownEnd" role="button" data-toggle="dropdown" data-target="#" href="#">
+              <div class="input-group date">
+                <input type="text" class="form-control"   data-ng-model="vm.dateRangeEnd">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+              </div>
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <datetimepicker ng-change="vm.listOnChangeDate();vm.changeFormat(vm.dateRangeEnd,'dateRangeEnd')"
+              data-ng-model="vm.dateRangeEnd" data-datetimepicker-config="{ dropdownSelector: '#dropdownEnd', renderOn: 'start-date-changed' }"
+                data-on-set-time="endDateOnSetTime()" data-before-render="endDateBeforeRender($view, $dates, $leftDate, $upDate, $rightDate)"></datetimepicker>
+            </ul>
+          </div>
+        </div>
+           <div class="col-md-3 padding-right-0 padding-left-0">
+          <div class ="form-group date-time-picker">
+            <label>Yearly:</label>
+            <select class="trend-dropdown" ng-model="vm.dropDownYears.model" 
+                    ng-change="vm.yearChange()" options="vm.dropDownYears.options">
+                <option ng-repeat="x in vm.dropDownYears.options">{{x}}</option>
+            </select> 
+          </div>
+        </div>
+        <div class="col-md-3 padding-right-0 padding-left-0">
+          <div class="form-group date-time-picker">
+            <label>Monthly:</label>
+            <select class="trend-dropdown">
+                    <option ></option>
+            </select>
+          </div>
+        </div>
+      </div>
+       <div class="row">
+        <div class="col-md-6" ng-repeat="lineChartProperties in vm.data ">
+          <div class="asset-info-base">            
+            <div class="box-body">
+              <angular-line-chart colors="lineChartProperties.colors" labels="lineChartProperties.labels" data="lineChartProperties.data"
+                series="lineChartProperties.series" options="lineChartProperties.options" datasetOverride="lineChartProperties.datasetOverride"></angular-line-chart>
+            </div>
+          </div>
+        </div>
+
+      </div> 
+      <!-- Table Ends-->
+
+      <div ng-init="vm.getData(vm.total, vm.page, vm.pagesize, vm.data)"></div>
+        <paging
+    page=vm.page
+    page-size=vm.pagesize
+    total=vm.total
+    ng-click=pageNumber(vm.page)
+      ng-hide="getLength > 0"
+
+    text-next="Next"
+    text-prev="Previous"
+    text-title-page="Page {page} Hover Over"
+
+    text-title-next="Next hover"
+    text-title-prev="Prev hover"
+    show-prev-next="true"
+    show-first-last="false">
+</paging>
+      </div>

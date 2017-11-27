@@ -1,0 +1,44 @@
+
+#semi-gauge{
+  cursor: pointer;
+  height: 208px;
+  position: relative;
+}
+
+#semi-gauge canvas{
+  height: 277px;
+}
+#semi-gauge span {
+
+font-size: 38px !important;
+line-height: 225px !important;
+}
+#semi-gauge span u {
+font-size: 38px !important;
+}
+#semi-gauge b{
+    line-height: 300.385px !important;
+    }
+.min-max-value
+{
+      position: relative;
+    bottom: 65px;
+    width: 50px;
+    text-align: center;
+    color: #337ab7;
+}
+
+.min-max
+{
+  width: 92%;
+    margin: auto;
+}
+.float-left
+{
+  float: left;
+}
+.float-right
+{
+  float:right;
+
+}

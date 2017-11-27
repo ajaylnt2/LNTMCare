@@ -1,0 +1,69 @@
+<nav class="navbar navbar-fixed-top" role="navigation" ng-init="vm.navInit()">
+  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+      </button>
+  <a class="logo"> <img src="images/ABINBEV.png" class="logo-icon"></td>
+  </a>
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav nav-section">
+      <li ng-class="{ active: vm.isActive('/overview')}">
+        <a ui-sref="overview">Overview</a>
+      </li>
+      <li ng-class="{ active: vm.isActive('/dashboard')}">
+        <a ui-sref="dashboard">Dashboard</a>
+      </li>
+    </ul>
+    <div class="col-md-offset-1">
+      <ul class="nav navbar-right top-nav">
+        <li ng-class="{active:vm.isActive('/plantsMain')}">
+          <a ng-class="(vm.isActive('/plantsMain'))" ui-sref="production"><img src="images/Plant.png" class="plant-icon" />
+            <span class="plant-name">{{vm.selectedPlant}}</span> </a>
+        </li>
+        <li>
+          <a ng-class="vm.isActive('/alerts')" data-toggle="modal" data-target="#alarm">
+            <i class="fa fa-bell-o fa-2x alarm-icon">
+            <span class="notify-badge">{{vm.openEvents}}
+            </span></i></a>
+        </li>
+        <li>
+          <a class="dropdown-toggle icons" data-toggle="dropdown">
+            <i class="fa fa-user-circle icons2"></i>
+            <span class="user-name">{{(vm.profile.LoginId)?vm.profile.LoginId:"" }}</span>
+          </a>
+          <ul class="dropdown-menu logout">
+            <li class="logout-icon">
+              <a href="" ng-click="vm.logoutClick()">
+                <i class="fa fa-sign-out"></i> Sign out</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!--AlarmsPopup Start-->
+<div class="modal" id="alarm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-init="vm.init()">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content name-plate">
+      <div class="modal-header">
+        <button type="button" class="ui-icon-delete" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Alarms</h4>
+      </div>
+      <div class="modal-body det-popup">
+        <div class="table-responsive">
+          <table class="table name-plate-table">
+            <tr ng-repeat="linedata in vm.lines">
+              <td class="grey-text">{{linedata}}</td>
+              <td class="text-right normal-text2">{{vm.openEvents}}</td>
+            </tr>
+              </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--AlarmsPopup End-->

@@ -1,0 +1,18 @@
+$dark-grey: #808080;
+$arrow-color: rgba(255, 255, 255, .2);
+$white:#ffffff;
+$secondary:rgba(255, 255, 255, .2);
+$primary:rgba(255, 255, 255, .2);
+$font-white:#ffffff;
+$black-darker:#808080;
+$primary-font:40px;
+
+.selectpicker:focus
+{
+  outline: none;
+}
+
+.selectpicker{
+  background-color: $black-darker;
+}
+

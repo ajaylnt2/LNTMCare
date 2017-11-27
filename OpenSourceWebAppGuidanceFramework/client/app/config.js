@@ -1,0 +1,51 @@
+const projectConfig = {
+  api_base_url: `http://192.168.33.25/Mcare/api/Mcare`,
+
+  set_interval:180000,
+
+  get_health_index: `GetHealthIndex`,
+  get_rpm: `GetRPM`,
+  get_total_running_hours: `GetRunningHours`,
+  get_average_temperature: `GetTemperature`,
+  get_time_to_failure: `GetTimetoFailure`,
+  get_average_current: `GetAvgRmsCurrent`,
+  get_acceleration: `GetAcceleration`,
+  get_velocity: `GetVelocity`,
+  get_displacement: `GetDisplacement`,
+  get_latest_events: `GetLatestEventslog`,
+  delete_event: `GetAcknowledgeEvents`,
+  get_years_for_historical_trends: `GetYears`,
+  get_historical_chart_data_for_year: `GetProcessedTimeStampsByYear`,
+  get_historical_chart_data_for_year_month: `GetProcessedTimeStampsByYearMonth`,
+  get_single_instance_time_stamps: `GetSingleInstanceTimeStamps`,
+  get_gauge_data: `GetTransactionParameters`,
+  get_horizontal_data: `Mcare`,
+  get_vertical_data: `GetTransactionParameters`,
+  get_displacement_horizontal_data: `Mcare`,
+  get_displacement_vertical_frequency_data: `Mcare`,
+  get_velocity_horizontal_data: `Mcare`,
+  get_velocity_vertical_frequency_data: `Mcare`,
+  get_horizontal_position: `Mcare`,
+  get_vertical_position: `Mcare`,
+  get_all_assets: `GetAllAssets`,
+  get_line_data: `GetLineData`,
+  get_normal_count: `GetNormalValue`,
+  get_non_urgent_count: `GetNonurgentValue`,
+  get_urgent_count: `GetUrgentValue`,
+  get_critical_count: `GetCriticalValue`,
+  get_table_data: `GetAssetsName`,
+  get_open_events: `PlantEvents`,
+  get_line_items: `GetLineData`,
+  get_plants: `GetPlants`,
+  run_drop_down:`GetSingleInstanceTags`,
+  run_drop_down1:`GetSingleInstanceTags`,
+  get_all_eventslog:`GetAllEventslog`,
+  get_events:`GetEvents`,
+  get_assets_name:`GetAssetsName`,
+  get_assets_status:`GetAssetsStatus`,
+
+};
+
+export {
+  projectConfig
+};

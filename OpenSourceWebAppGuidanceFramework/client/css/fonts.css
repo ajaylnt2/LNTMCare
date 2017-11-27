@@ -1,0 +1,28 @@
+@font-face {
+      font-family: "segoe-ui";
+      src: url("../fonts/segoe-ui/SEGOEUI.TTF");
+    }
+    @font-face {
+      font-family: "segoe-uib";
+      src: url("../fonts/segoe-ui/SEGOEUIB.TTF");
+    }
+    @font-face {
+      font-family: "segoe-uii";
+      src: url("../fonts/segoe-ui/segoeuii.ttf");
+    }
+    @font-face {
+      font-family: "segoe-uiz";
+      src: url("../fonts/segoe-ui/SEGOEUIZ.TTF");
+    }
+
+        @font-face {
+      font-family: "Myriad-pro-Regular";
+      src: url("../fonts/Myriad-Pro-Regular/Myriad-Pro-Regular.ttf");
+    }
+         @font-face {
+      font-family: "Myriadproregular";
+      src: url("../fonts/Myriad-Pro-Regular/MYRIADPROREGULAR.ttf");
+    }
+
+
+    

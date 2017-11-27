@@ -1,0 +1,9 @@
+
+  <button
+    class="btn "
+    ng-class="vm.getClass(vm.type)"
+    ng-click="vm.onClick()"
+    ng-disabled="vm.disabled">
+  <span ng-if="vm.logo" class="glyphicon glyphicon-chevron-right"></span>
+     {{vm.text}}
+  </button>

@@ -1,0 +1,9 @@
+<div class="form-group">
+  <label ng-class="(vm.label)?'':'dis-none'" for="{{vm.label}}">{{vm.label}}</label>
+  <!-- {{vm.options}} -->
+  <select class="form-control " placeholder={{vm.placeHolder}} ng-model="vm.model" ng-change="vm.onChange({model: vm.model})">
+    <option ng-repeat="option in vm.options" value="{{option}}">
+      {{option}}
+    </option>
+</select>
+</div>

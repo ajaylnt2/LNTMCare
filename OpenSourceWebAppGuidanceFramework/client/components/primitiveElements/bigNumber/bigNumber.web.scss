@@ -1,0 +1,28 @@
+
+
+.outerdetails{
+  $white: #ffffff;
+
+      padding: 0px 0px 0px 10px;
+    margin: 0px;
+    .small {
+    // color: $text-color;
+    font-size: 15px ;
+	}
+  @media(max-width:767px) {
+    .large {
+        font-size: 50px;
+      }
+  }
+  @media(min-width:768px) {
+    .large {
+        font-size: 4vw;
+      }
+  }
+    .large {
+    // color: $text-color;
+
+    line-height: 100%;
+    padding: 0px;
+	}
+}

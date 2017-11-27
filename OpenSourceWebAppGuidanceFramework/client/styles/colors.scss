@@ -1,0 +1,110 @@
+
+$black:        #424242 !default; /* primary color */
+$black-dark:   #2b313f !default; /* primary color */
+$black-darker: #101420 !default; /* primary color */
+$blue:         #001342 !default; /* secondary color */
+$blue-light:   #bfccdd !default; /* secondary color */
+$blue-bright:  #1751c6 !default; /* Informational */
+$gold:         #ffb91d !default; /* primary color */
+$gold-light:   #ffcd40 !default; /* primary color */
+$green:        #0ac410 !default; /* Ok, Confirmed */
+$gray:         #f1f5f8 !default; /* secondary color */
+$grey:         #f1f5f8 !default; /* secondary color */
+$red:          #d11515 !default; /* Error, Alert */
+$white:        #ffffff !default; /* secondary color */
+$yellow:       #ecc800 !default; /* Caution */
+$shade:        #7c7c7c !default; /* text shade for list item */
+$slate:        #1b202d !default;
+$dark-grey:    #595757;
+$dialog-bg-color: #e6eaed ;
+$primary-black: #000000;
+
+.black {
+  color: $black;
+}
+.black-bg {
+  background-color: $black;
+}
+.black-dark {
+  color: $black-dark;
+}
+.black-dark-bg {
+  background-color: $black-dark;
+}
+.black-darker {
+  color: $black-darker;
+}
+.black-darker-bg {
+  background-color: $black-darker;
+}
+
+.blue {
+  color: $blue;
+}
+.blue-bg {
+  background-color: $blue;
+}
+.blue-light {
+  color: $blue-light;
+}
+.blue-light-bg {
+  background-color: $blue-light;
+}
+.blue-bright {
+  color: $blue-bright;
+}
+.blue-bright-bg {
+  background-color: $blue-bright;
+}
+
+.gold {
+  color: $gold;
+}
+.gold-bg {
+  background-color: $gold;
+}
+.gold-light {
+  color: $gold-light;
+}
+.gold-light-bg {
+  background-color: $gold-light;
+}
+
+.gold-gradient {
+  background: linear-gradient(to bottom, $gold 0%, $gold 50%, $gold-light 100%);
+}
+
+.green {
+  color: $green;
+}
+.green-bg {
+  background-color: $green;
+}
+
+.gray {
+  color: $gray;
+}
+.gray-bg {
+  background-color: $gray;
+}
+
+.red {
+  color: $red;
+}
+.red-bg {
+  background-color: $red;
+}
+
+.white {
+  color: $white;
+}
+.white-bg {
+  background-color: $white;
+}
+
+.yellow {
+  color: $yellow;
+}
+.yellow-bg {
+  background-color: $yellow;
+}

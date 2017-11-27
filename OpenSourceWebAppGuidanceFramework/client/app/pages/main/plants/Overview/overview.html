@@ -1,0 +1,52 @@
+<div class="container-fluid overview height100p" ng-init="vm.initData()">
+    <div class="datefont">
+        Last Update:{{ vm.today | date : "dd/MM/yyyy HH:mm:ss" }}
+    </div>
+  <div class="summaryDiv">
+    <div class="panel-body">
+      <div class="row margin-right-0">
+        <div class="col-md-2 col-sm-12 padding-right-0 lineImageDiv">
+            <span class="line65 uppercase" >{{vm.lineName}}</span>
+            <img ng-src="images/Line1.png" class="line65-image img-responsive"/>
+        </div>
+        <div class="col-md-2 col-sm-12 padding-right-0">
+          <div class="grid-line">
+            <span class="line65-font">Assets</span>
+            <div class="color-white line65-bignumber">{{vm.assetCount}}</div>
+          </div>
+        </div>
+        <div class="col-md-2 col-sm-12 padding-right-0">
+          <div class="grid-line">
+            <span class="line65-font">Normal</span>
+            <div class=" color-green line65-bignumber">{{vm.normalCount}}</div>
+          </div>
+        </div>
+        <div class="col-md-2 col-sm-12 padding-right-0">
+          <div class="grid-line">
+            <span class="line65-font">Non-Urgent</span>
+            <div class="color-yellow line65-bignumber">{{vm.nonUrgentCount}}</div>
+          </div>
+        </div>
+        <div class="col-md-2 col-sm-12 padding-right-0">
+          <div class="grid-line">
+            <span class="line65-font">Urgent</span>
+            <div class="color-orange line65-bignumber">{{vm.urgentCount}}</div>
+          </div>
+        </div>
+        <div class="col-md-2 col-sm-12 padding-right-0">
+          <div class="grid-line">
+            <span class="line65-font">Critical</span>
+            <div class="color-red line65-bignumber">{{vm.criticalCount}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="detailsDiv">
+     <div class="height100p">
+       <pagination total="vm.pagingProperties.total" pagesize="vm.pagingProperties.pagesize"
+        page="vm.pagingProperties.page"
+        data="vm.paginationData.data" columns="vm.paginationData.columns"></pagination>
+    </div>
+  </div>
+</div>

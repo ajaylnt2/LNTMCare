@@ -1,0 +1,54 @@
+
+<div class="container">
+
+  <form name="vm.loginForm" ng-submit="vm.login($event)" novalidate>
+    <div class="login-container-center is-responsive">
+      <div class="main-login main-center" style="padding:0;margin-bottom:10px;background:transparent;">
+        <img src="images/ABINBEV_TECHSUPPLY.png" class="img-responsive abinbev-tech"></td>
+
+      </div>
+      <div class="login-section">
+        <div class="space-below-20">
+          <h3 class="remove-margin-top">Sign In</h3>
+        </div>
+        <div class="space-below-15">
+
+          <div class="user-details">
+            <div class="input-group">
+              <div class="input-group-addon icon-style">
+                <i class="fa fa-user"></i>
+              </div>
+              <input name="userName" ng-class="{submitted: vm.loginForm.userName.$invalid && vm.formSubmitted}"
+              class="form-control" type="text" placeholder="UserID" ng-model="vm.user.userName" required>
+            </div>
+            <span class="error-message" ng-show="vm.loginForm.userName.$error.pattern && vm.formSubmitted">Please enter digits without space.</span>
+            <span class="error-message" ng-show="vm.loginForm.userName.$error.required && vm.formSubmitted">Please enter User Id.</span>
+          </div>
+        </div>
+        <div class="space-below-15">
+
+          <div class=" user-details">
+            <div class="input-group">
+              <div class="input-group-addon icon-style">
+                <i class="fa fa-lock"></i>
+              </div>
+              <input name="password" ng-class="{submitted: vm.loginForm.password.$invalid && vm.formSubmitted}" class="form-control" type="password"
+                placeholder="Password" ng-model="vm.user.password" required>
+            </div>
+            <span class="error-message" ng-show="vm.loginForm.password.$invalid && vm.formSubmitted">Please enter Password.</span>
+          </div>
+        </div>
+
+          <div class="user-details space-below-15">
+            <span class="error-message" ng-if="vm.loginError">{{vm.loginError}}</span>
+          </div>
+
+          <div class="user-details">
+            <button type="submit" class="btn btn-custom btn-md btn-block login-button">LOGIN</button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+     <footer-bar></footer-bar>
+</div>

@@ -1,0 +1,507 @@
+<div class="container-fluid dashboard">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="btn-group info-button">
+        <button class="btn" ng-class="vm.tabFocus=='info'?'tab-focus':''" ng-click="vm.clickTab('info')" data-toggle="tab" href="#info"><i class="fa fa-cog "></i>INFO</button>
+        <button class="btn" ng-class="vm.tabFocus=='trends'?'tab-focus':''" ng-click="vm.clickTab('trends')" data-toggle="tab" href="#trends"><i class="fa fa-bar-chart"></i>TRENDS</button>
+        <button class="btn" ng-class="vm.tabFocus=='historical'?'tab-focus':''" ng-click="vm.clickTab('historical')" data-toggle="tab"
+          href="#historical"><i class="fa fa-bar-chart"></i>HISTORICAL TRENDS</button>
+        <button class="btn" ng-class="vm.tabFocus=='eventlog'?'tab-focus':''" ng-click="vm.clickTab('eventlog')" data-toggle="tab"
+          href="#events"><i class="fa fa-calendar"></i>EVENT LOG</button>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div ng-class="vm.timeBorder==''?'time-border':''" ng-click="vm.clickTime('')" class="col-md-offset-4 last-updated float-right">Last Update:{{ vm.dateRangeEnd | date : "dd/MM/yyyy HH:mm:ss" }}</div>
+    </div>
+  </div>
+  <div class="tab-content height100p" ng-init="vm.initDashboard()">
+    <!-- INFO start-->
+    <div id="info" class="tab-pane fade in active height100p">
+      <div class="row height100p">
+        <div class="col-md-4 padding-right-0 dis-flex-prop">
+          <div class="panel dis-overall">
+            <p class="heading-style"><span>{{vm.selectedAsset}}  :</span><span>{{vm.heading}}</span>
+              <p>
+                <div class="panel-body ">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <ul class="det-style">
+                        <li class="time-logo"><img class="mcare-logo" ng-src="images/LOCATION.png" />{{vm.selectedPlant}}</li>
+                        <li><i ng-class="(vm.status=='Running') ? 'fa fa-circle running-image' : 'fa fa-circle not-running-image'"
+                            aria-hidden="true"></i>{{vm.status}}</li>
+
+                        <li><img class="mcare-time-logo" ng-src="images/TIME.png" /><span>{{vm.totalOperatingTimes[0].TotalOperatingHrs}} hours</span></li>
+                      </ul>
+                    </div>
+                    <div class="col-md-4 ">
+                      <div class="asset-info-img">
+                        <i ng-class="(vm.status=='Running') ? ' running' : 'not-running'"></i>
+                        <button class="btn btn-primary width100p name-plate-font padding-12" data-toggle="modal" data-target="#action">NAME PLATE&nbsp;&nbsp;<i class="fa fa-angle-right" aria-hidden="true"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+          </div>
+          <div class="panel gauge-style">
+            <!-- <semi-gauge  ng-init="vm.initData()" ranges="vm.ranges" value="vm.value" value-unit="vm.unit" precision="vm.precision" lower-limit="vm.lowerLimit" upper-limit="vm.upperLimit">  </semi-gauge> -->
+            <div id="loadingBar" ng-show="!vm.dataLoadedSuccessfully" class="margin-bottom-10 "><i class="fa fa-circle-o-notch fa-spin" style="font-size:24px;color:#fff"></i></div>
+            <div ng-show="vm.dataLoadedSuccessfully" width="250"  ng-radial-gauge hide-graduation-details="1"
+              bar-thickness="60" angle="90" ranges="vm.ranges" value="vm.value" value-unit="vm.unit" precision="vm.precision"
+              lower-limit="vm.lowerLimit" upper-limit="vm.upperLimit">
+            </div>
+            <div class="health-status">
+              <p><i class="fa fa-circle normal-text" aria-hidden="true"></i>
+                <span class="white-text">Normal</span></p>
+              <p><i class="fa fa-circle non-urgent-text" aria-hidden="true"></i>
+                <span class="white-text">Non-Urgent</span></p>
+              <p><i class="fa fa-circle urgent-text" aria-hidden="true"></i>
+                <span class="white-text">Urgent</span></p>
+              <p><i class="fa fa-circle critical-text" aria-hidden="true"></i>
+                <span class="white-text">Critical</span></p>
+            </div>
+            <div class="row">
+              <div class="col-md-6 asset-health-img">
+                <img src="images/ASSET HELTH.png" class="img-responsive pull-right">
+              </div>
+              <div class="value">{{vm.value}}%</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 padding-right-0 dis-flex-prop">
+          <div class="panel dis-overall">
+            <div class="panel-body ">
+              <div class="row">
+                <div class="col-md-6"><img class="common-logo-rpm" ng-src="images/RPM.png" />
+                </div>
+                <div class="col-md-6 simple-text">
+                  <span class="rpm-value">{{vm.overallRPM}}</span>
+                  <span class="rpm-text">RPM</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel dis-overall">
+            <div class="panel-body ">
+              <div class="row">
+                <div class="col-md-6"><img class="common-logo-amp" ng-src="images/AMP.png" />
+                </div>
+                <div class="col-md-6 simple-text">
+                  <span class="rpm-value">{{vm.averageCurrent}}</span>
+                  <span class="rpm-text">AMP</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel dis-overall">
+            <div class="panel-body ">
+              <div class="row">
+                <div class="col-md-6"><img class="common-logo-real" ng-src="images/REAL RUNNING TIME.png" />
+                </div>
+                <div class="col-md-6 simple-text">
+                  <span class="rpm-value">{{vm.totalRunningHours}}</span>
+                  <span class="rpm-text">HRS</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel dis-overall ">
+            <div class="panel-body ">
+              <div class="row">
+                <div class="col-md-6">
+                  <img class="common-logo-temp" ng-src="images/TEMPERATURE.png" />
+                </div>
+                <div class="col-md-6 simple-text">
+                  <span class="rpm-value">{{vm.averageTemperature}}</span>
+                  <span class="rpm-text"><sup>0</sup>C</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-border-red dis-overall">
+            <div class="panel-body ">
+              <span class="estim-days">Estimated Days to Failure</span>
+              <div class="row estimated-font">
+                <div class="col-md-6 estimated">
+                  <span class="estimated-days">{{vm.daysToFailure}}&nbsp</span>
+                  <span class="estimated-hours">Days</span>
+                </div>
+                <div class="col-md-6 estimated">
+                  <span class="estimated-days">{{vm.hoursToFailure}}&nbsp</span>
+                  <span class="estimated-hours">hrs</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5 height100p dis-flex-prop">
+          <div class="panel event-panel vertical-middle">
+            <div class="panel-body ">
+              <div class="row">
+                <div class="col-md-3 padding-right-0">
+                  <div class=" vibration-img">
+                    <img ng-src="images/VIBRATION.png" />
+                  </div>
+                </div>
+                <div class="col-md-3 padding-right-0">
+                  <span class="acceleration-text">Acceleration</span>
+                  <span class="acceleration-value">{{vm.acceleration}}</span>
+                  <span class="text-rpm">g pk</span>
+                </div>
+                <div class="col-md-3 ">
+                  <span class="acceleration-text">Velocity</span>
+                  <span class="acceleration-value">{{vm.velocity}}</span>
+                  <span class="text-rpm">in/s pk</span>
+                </div>
+                <div class="col-md-3 padding-left-0">
+                  <span class="acceleration-text">Displacement</span>
+                  <span class="acceleration-value">{{vm.displacement}}</span>
+                  <span class="text-rpm">mm/s pk-pk</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel event-panel dis-overall-top ">
+            <div class="panel-heading panel-event-log">Event Log</div>
+            <div class="panel-body ">
+              <div class="table-responsive responsive-overflow">
+                <table class="table eventlog">
+                  <thead>
+                    <tr class="panel-event-log">
+                      <th></th>
+                      <th>Events</th>
+                      <th>Created</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="event-table" ng-repeat="event in vm.latestEvents">
+                      <td></td>
+                      <td ng-class="event.Description == 'OverLoaded'?'dash-color-red glyphicon glyphicon-warning-sign':''"> <span>{{event.Description}}</span></td>
+                      <td>{{event.TimeStamp.replace('T', ' ')}}</td>
+                      <td>
+                        <span class="custom-checkbox" ng-click="vm.clickCheck(event)">
+                             <input type="checkbox" id="tickCheck{{$index}}" name=""/>
+                             <label for="tickCheck{{$index}}"  ></label>
+                         </span>
+                      </td>
+                    </tr>
+                    <!--<button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+                        Previous
+                    </button>
+                    {{currentPage+1}}/{{numberOfPages()}}
+                    <button ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="currentPage=currentPage+1">
+                        Next
+                    </button>-->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- INFO END-->
+    <!-- NAME PLATE POPUP -->
+    <div class="modal fade" id="action" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content name-plate">
+          <div class="modal-header">
+            <button type="button" class="ui-icon-delete" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">DET -0671400362</h4>
+          </div>
+          <div class="modal-body det-popup">
+            <div class="table-responsive">
+              <table class="table name-plate-table">
+                <tr>
+                  <td class="grey-text">Rated Voltes</td>
+                  <td class="popup-rightcontent" style="
+  ">208-230 V</td>
+                </tr>
+                <tr>
+                  <td class="grey-text">Rated HP</td>
+                  <td class="popup-rightcontent">1.65</td>
+                </tr>
+                <tr>
+                  <td class="grey-text">Rated Flow Rate(GPM)</td>
+                  <td class="popup-rightcontent">40 - 140</td>
+                </tr>
+                <tr>
+                  <td class="grey-text">Installation Date</td>
+                  <td class="popup-rightcontent">06-Dec-2016</td>
+                </tr>
+                <tr>
+                  <td class="grey-text">Type</td>
+                  <td class="popup-rightcontent">M</td>
+                </tr>
+                <tr>
+                  <td class="grey-text">Amps</td>
+                  <td class="popup-rightcontent">10.5 - 10.0 A</td>
+                </tr>
+                <tr>
+                  <td class="grey-text">RPM</td>
+                  <td class="popup-rightcontent">600-3450</td>
+                </tr>
+                <tr>
+                  <td class="grey-text">Make</td>
+                  <td class="popup-rightcontent">Century</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- NAME PLATE POPUP -->
+    <!-- HISTORICAL TRENDS -->
+    <div id="historical" class="tab-pane fade">
+      <div class="row margin-right-0 ">
+        <div class="col-md-4 padding-right-0">
+          <div class="form-group date-time-picker">
+            <label>Yearly:</label>
+            <select class="trend-dropdown">
+                <option ng-repeat="x in vm.yearDropDown.options">{{x}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4 padding-right-0 padding-left-0">
+          <div class="form-group date-time-picker">
+            <label>Monthly:</label>
+            <select class="trend-dropdown" ng-model="vm.selectedMonth" options="vm.monthlyData" ng-change="vm.monthChange1()">
+                <option ng-repeat="y in vm.monthlyData">{{y}}</option>
+            </select>
+          </div>
+        </div>
+         <div class="col-md-4 padding-right-0 padding-left-0">
+          <div class="form-group date-time-picker">
+            <label>Daily:</label>
+            <select class="trend-dropdown" ng-model="vm.selectedDay" options="vm.dailyData" ng-change="vm.monthChange1()">
+                <option ng-repeat="y in vm.dailyData">{{y}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row margin-right-0">
+        <div class="col-md-6 padding-right-0">
+          <div class="base-background">
+            <div class="row margin-right-0 margin-bottom-10 ">
+              <div class="col-md-6 padding-right-0">
+                <select class="trend-dropdown" ng-model="vm.historicalDropDownProperties1.model" ng-change="vm.historicalChartNameChange1()"
+                  options="vm.historicalDropDownProperties1.options">
+
+                    <option ng-repeat="x in vm.historicalDropDownProperties1.options">{{x}}</option>
+                  </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <angular-line-chart colors="vm.historicalChartProperties1.colors" labels="vm.historicalChartProperties1.labels" data="vm.historicalChartProperties1.data"
+                  series="vm.historicalChartProperties1.series" options="vm.historicalChartProperties1.options" datasetOverride="vm.historicalChartProperties1.datasetOverride"></angular-line-chart>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 padding-right-0">
+          <div class="base-background">
+            <div class="row margin-right-0 margin-bottom-10">
+              <div class="col-md-6 padding-right-0">
+                <select class="trend-dropdown" ng-model="vm.historicalDropDownProperties2.model" ng-change="vm.historicalChartNameChange2()"
+                  options="vm.historicalDropDownProperties2.options">
+
+                    <option ng-repeat="x in vm.historicalDropDownProperties2.options">{{x}}</option>
+                  </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <angular-line-chart colors="vm.historicalChartProperties2.colors" labels="vm.historicalChartProperties2.labels" data="vm.historicalChartProperties2.data"
+                  series="vm.historicalChartProperties2.series" options="vm.historicalChartProperties2.options" datasetOverride="vm.historicalChartProperties2.datasetOverride"></angular-line-chart>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row margin-right-0">
+        <div class="col-md-6 padding-right-0">
+          <div class="base-background">
+            <div class="row margin-right-0 margin-bottom-10">
+              <div class="col-md-6 padding-right-0 ">
+                <select class="trend-dropdown" ng-change="vm.historicalChartNameChange3()" ng-model="vm.historicalDropDownProperties3.model"
+                  options="vm.historicalDropDownProperties3.options">
+                    <option ng-repeat="x in vm.historicalDropDownProperties3.options">{{x}}</option>
+                  </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <angular-line-chart colors="vm.historicalChartProperties3.colors" labels="vm.historicalChartProperties3.labels" data="vm.historicalChartProperties3.data"
+                  series="vm.historicalChartProperties3.series" options="vm.historicalChartProperties3.options" datasetOverride="vm.historicalChartProperties3.datasetOverride"></angular-line-chart>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 padding-right-0">
+          <div class="base-background">
+            <div class="row margin-right-0 margin-bottom-10">
+              <div class="col-md-6 padding-right-0">
+                <select class="trend-dropdown" ng-change="vm.historicalChartNameChange4()" ng-model="vm.historicalDropDownProperties4.model"
+                  options="vm.historicalDropDownProperties4.options">
+
+                    <option ng-repeat="x in vm.historicalDropDownProperties4.options">{{x}}</option>
+                  </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <angular-line-chart colors="vm.historicalChartProperties4.colors" labels="vm.historicalChartProperties4.labels" data="vm.historicalChartProperties4.data"
+                  series="vm.historicalChartProperties4.series" options="vm.historicalChartProperties4.options" datasetOverride="vm.historicalChartProperties4.datasetOverride"></angular-line-chart>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- HISTORICAL TRENDS ENDS -->
+    <!-- TRENDS start-->
+    <div id="trends" class="tab-pane fade">
+      <div class="row margin-right-0 ">
+        <div class="col-md-6 padding-right-0">
+          <div class="form-group date-time-picker">
+            <label>From:</label>
+            <a style="width:100%;" class="dropdown-toggle" id="dropdownStart" role="button" data-toggle="dropdown" data-target="#" href="#">
+              <div class="input-group date" style="width:100%;">
+                <input type="text" class="form-control" data-ng-model="vm.dateRangeStart">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+              </div>
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <datetimepicker data-ng-model="vm.dateRangeStart" ng-change="vm.listOnChangeDate();vm.changeFormat(vm.dateRangeStart,'dateRangeStart')"
+                data-datetimepicker-config="{ dropdownSelector: '#dropdownStart', renderOn: 'end-date-changed' }" data-on-set-time="startDateOnSetTime()"
+                data-before-render="startDateBeforeRender($dates)" ng-init="vm.changeFormat(vm.dateRangeStart,'dateRangeStart')"></datetimepicker>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6 padding-right-0 padding-left-0">
+          <div class="form-group date-time-picker">
+            <label>To:</label>
+            <a class="dropdown-toggle" id="dropdownEnd" role="button" data-toggle="dropdown" data-target="#" href="#">
+              <div class="input-group date">
+                <input type="text" class="form-control" data-ng-model="vm.dateRangeEnd">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+              </div>
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <datetimepicker ng-change="vm.listOnChangeDate();vm.changeFormat(vm.dateRangeEnd,'dateRangeEnd')" data-ng-model="vm.dateRangeEnd"
+                data-datetimepicker-config="{ dropdownSelector: '#dropdownEnd', renderOn: 'start-date-changed' }" data-on-set-time="endDateOnSetTime()"
+                data-before-render="endDateBeforeRender($view, $dates, $leftDate, $upDate, $rightDate)" ng-init="vm.changeFormat(vm.dateRangeEnd,'dateRangeEnd')"></datetimepicker>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row margin-right-0">
+        <div class="col-md-6 padding-right-0">
+          <div class="base-background">
+            <div class="row margin-right-0 margin-bottom-10 ">
+              <div class="col-md-6 padding-right-0">
+                <select class="trend-dropdown" ng-model="vm.dropDownProperties1.model" ng-change="vm.chartNameChange1()" options="vm.dropDownProperties1.options">
+                    <option ng-repeat="x in vm.dropDownProperties1.options">{{x}}</option>
+                  </select>
+              </div>
+              <div class="col-md-6 padding-right-0 ">
+                <select class="trend-dropdown" ng-disabled="vm.disableDropdownGraph1" ng-model="vm.dropDownProperties5.model" ng-change="vm.getChartDataBasedOnTimeStamp1()"
+                  options="vm.dropDownProperties5.options">
+                    <option ng-repeat="x in vm.dropDownProperties5.options">{{x}}</option>
+                  </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <angular-line-chart colors="vm.lineChartProperties1.colors" labels="vm.lineChartProperties1.labels" data="vm.lineChartProperties1.data"
+                  series="vm.lineChartProperties1.series" options="vm.lineChartProperties1.options" datasetOverride="vm.lineChartProperties1.datasetOverride"></angular-line-chart>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 padding-right-0">
+          <div class="base-background">
+            <div class="row margin-right-0 margin-bottom-10">
+              <div class="col-md-6 padding-right-0">
+                <select class="trend-dropdown" ng-model="vm.dropDownProperties2.model" ng-change="vm.chartNameChange2()" options="vm.dropDownProperties2.options">
+                    <option ng-repeat="x in vm.dropDownProperties2.options">{{x}}</option>
+                  </select>
+              </div>
+              <div class="col-md-6 padding-right-0">
+                <select class="trend-dropdown" ng-disabled="vm.disableDropdownGraph2" ng-model="vm.dropDownProperties6.model" ng-change="vm.getChartDataBasedOnTimeStamp2()"
+                  options="vm.dropDownProperties6.options">
+                    <option ng-repeat="x in vm.dropDownProperties6.options">{{x}}</option>
+                  </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <angular-line-chart colors="vm.lineChartProperties2.colors" labels="vm.lineChartProperties2.labels" data="vm.lineChartProperties2.data"
+                  series="vm.lineChartProperties2.series" options="vm.lineChartProperties2.options" datasetOverride="vm.lineChartProperties2.datasetOverride"></angular-line-chart>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row margin-right-0">
+        <div class="col-md-6 padding-right-0">
+          <div class="base-background">
+            <div class="row margin-right-0 margin-bottom-10">
+              <div class="col-md-6 padding-right-0 ">
+                <select class="trend-dropdown" ng-change="vm.chartNameChange3()" ng-model="vm.dropDownProperties3.model" options="vm.dropDownProperties3.options">
+                    <option ng-repeat="x in vm.dropDownProperties3.options">{{x}}</option>
+                  </select>
+              </div>
+              <div class="col-md-6 padding-right-0">
+                <select class="trend-dropdown" ng-disabled="vm.disableDropdownGraph3" ng-model="vm.dropDownProperties7.model" ng-change="vm.getChartDataBasedOnTimeStamp3()"
+                  options="vm.dropDownProperties7.options">
+                    <option ng-repeat="x in vm.dropDownProperties7.options">{{x}}</option>
+                  </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <angular-line-chart colors="vm.lineChartProperties3.colors" labels="vm.lineChartProperties3.labels" data="vm.lineChartProperties3.data"
+                  series="vm.lineChartProperties3.series" options="vm.lineChartProperties3.options" datasetOverride="vm.lineChartProperties3.datasetOverride"></angular-line-chart>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 padding-right-0">
+          <div class="base-background">
+            <div class="row margin-right-0 margin-bottom-10">
+              <div class="col-md-6 padding-right-0">
+                <select class="trend-dropdown" ng-change="vm.chartNameChange4()" ng-model="vm.dropDownProperties4.model" options="vm.dropDownProperties4.options">
+                    <option ng-repeat="x in vm.dropDownProperties4.options">{{x}}</option>
+                  </select>
+              </div>
+              <div class="col-md-6 padding-right-0">
+                <select class="trend-dropdown" ng-disabled="vm.disableDropdownGraph4" ng-model="vm.dropDownProperties8.model" ng-change="vm.getChartDataBasedOnTimeStamp4()"
+                  options="vm.dropDownProperties8.options">
+                    <option ng-repeat="x in vm.dropDownProperties8.options">{{x}}</option>
+                  </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <angular-line-chart colors="vm.lineChartProperties4.colors" labels="vm.lineChartProperties4.labels" data="vm.lineChartProperties4.data"
+                  series="vm.lineChartProperties4.series" options="vm.lineChartProperties4.options" datasetOverride="vm.lineChartProperties4.datasetOverride"></angular-line-chart>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- TRENDS END-->
+    <!-- EVENT LOG start-->
+    <div class="details-div tab-pane fade" id="events">
+      <div class="height100p">
+        <custom-paging total="vm.customePagingProperties.total" pagesize="vm.customePagingProperties.pagesize" page="vm.customePagingProperties.page"
+          data="vm.customPaginationData.data" columns="vm.customPaginationData.columns"></custom-paging>
+      </div>
+    </div>
+    <!-- EVENT LOG end-->
+  </div>
+</div>

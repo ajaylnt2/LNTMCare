@@ -1,0 +1,6 @@
+<div class="switch-control">
+  <div ng-repeat="button in vm.buttons" ng-class="vm.value == button ? 'selected' : ''">
+      <input type="radio" id="{{vm.id+'_'+button}}" ng-model="vm.value" value="{{button}}">
+      <label for="{{vm.id+'_'+button}}">{{button}}</label>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+.hoverTable-normal{
+		width:100%; 
+		border-collapse:collapse; 
+	}
+	.hoverTable-normal td{ 
+		padding:7px; border:#4e95f4 1px solid;
+	}
+	/* Define the default color for all the table rows */
+	.hoverTable-normal tr{
+		background: #FFFFFF;
+	}
+	/* Define the hover highlight color for the table row */
+    .hoverTable-normal tr:hover {
+          background-color: #4e95f4
+    }
+    

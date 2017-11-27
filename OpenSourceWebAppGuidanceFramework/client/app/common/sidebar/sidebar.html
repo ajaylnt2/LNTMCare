@@ -1,0 +1,13 @@
+<div class="collapse navbar-collapse navbar-ex1-collapse sidebar" ng-init="vm.init()">
+    <ul class="nav navbar-nav side-nav nav-style">
+      <li ng-repeat="linedata in vm.lines" ng-class="{ active: vm.isActive(linedata)}">
+        <a ng-click="vm.sendDataToComponent(linedata)" data-toggle="tab">
+          <img src="images/Line2.png" class="img-responsive side-nav-content" />
+          <span>{{linedata}}</span>
+        </a>
+      </li>
+    </ul>
+  <div class="navbar navbar-fixed-bottom sidenav-footer">Powered By:<br>
+    <span>L&T Technology Services | Integrated MCare</span>
+    </div>
+</div>
